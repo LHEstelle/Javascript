@@ -15,16 +15,16 @@
 
 <body>
 
-    <div class="row tabl text-white m-0">
-        <div class="result border border-dark row ms-0 rounded text-dark" alt="75x75">
+    <div class="row tabl text-white m-0 border border-dark">
+        <div class="result border border-dark row ms-0 rounded text-dark">
             <div class="row text-end">
-                <input type="button" id="firstNumber" class="bg-white text-end text-dark border border-white rounded" disabled>
+                <input type="button" name="nombre" id="firstNumber" class="bg-white text-end text-dark border border-white rounded" disabled>
             </div>
             <div class="row">
                 <input type="button" id="operation" class="bg-white text-end text-dark border border-white rounded" disabled>
             </div>
             <div class="row">
-                <input type="button" id="secondNumber" class="bg-white text-end text-dark border border-white rounded" disabled>
+                <input type="button" name="nombre" id="secondNumber" class="bg-white text-end text-dark border border-white rounded" disabled>
             </div>
             <div class="row">
                 <input type="button" id="resultat" class="bg-white text-end text-dark border border-white rounded" disabled>
@@ -34,28 +34,28 @@
             <input type="button" id="sept" class="col-3 bg-dark text-white border border-white rounded-3" value="7" onclick="displayNumber(7)">
             <input type="button" id="huit" class="col-3 bg-dark text-white  border border-white rounded" value="8" onclick="displayNumber(8)">
             <input type="button" id="six" class="col-3  bg-dark text-white border border-white rounded" value="9" onclick="displayNumber(9)">
-            <input type="button" id="plus" class="col-3 bg-warning text-dark  border border-white rounded" value="+" onclick="displayOperator('+')">
+            <input type="button" id="plus" class="col-3 bg-warning text-dark  border border-white rounded" name="opérateur" value="+" onclick="displayOperator('+')">
         </div>
         <div class="myrow row text-center border border-white m-0 p-0">
             <input type="button" id="quatre" class="col-3 bg-dark text-white  border border-white" value="4" onclick="displayNumber(4)">
             <input type="button" id="cinq" class="col-3 bg-dark text-white  border border-white" value="5" onclick="displayNumber(5)">
             <input type="button" id="six" class="col-3 bg-dark text-white  border border-white" value="6" onclick="displayNumber(6)">
-            <input type="button" id="moins" class="col-3 bg-warning text-dark  border border-white" value="-" onclick="displayOperator('-')">
+            <input type="button" id="moins" class="col-3 bg-warning text-dark  border border-white" name="opérateur" value="-" onclick="displayOperator('-')">
         </div>
         <div class="myrow row text-center border border-white m-0 p-0">
             <input type="button" id="un" class="col-3 bg-dark text-white  border border-white" value="1" onclick="displayNumber(1)">
             <input type="button" id="deux" class="col-3 rounded bg-dark text-white  border border-white" value="2" onclick="displayNumber(2)">
             <input type="button" id="trois" class="col-3 shadow-lg bg-dark text-white  border border-white" value="3" onclick="displayNumber(3)">
-            <input type="button" id="fois" class="col-3 shadow-lg bg-warning text-dark  border border-white" value="x" onclick="displayOperator('x')">
+            <input type="button" id="fois" class="col-3 shadow-lg bg-warning text-dark  border border-white" name="opérateur" value="x" onclick="displayOperator('x')">
         </div>
         <div class="myrow row text-center border border-white m-0 p-0">
             <input type="button" id="point" class="col-3 bg-dark text-white  border border-white" value="." onclick="displayPoint()">
             <input type="button" id="zero" class="col-3 bg-dark text-white  border border-white" value="0" onclick="displayNumber(0)">
             <input type="button" id="effacer" class="col-3 bg-danger text-white  border border-white" value="C" onclick="reset()">
-            <input type="button" id="diviser" class="col-3 bg-warning text-dark  border border-white" value="/" onclick="displayOperator('/')">
+            <input type="button" id="diviser" name="opérateur" class="col-3 bg-warning text-dark  border border-white" value="/" onclick="displayOperator('/')">
         </div>
         <div class="myrow row-12 m-0 p-0">
-            <input type="button" id="result" class=" egal col-12 bg-warning text-dark text-center border border-white rounded" alt="75x75 " value="=">
+            <input type="button" id="result" class=" egal col-12 bg-warning text-dark text-center border border-white rounded" value="=" onclick="calculate()">
         </div>
     </div>
     <script>
@@ -86,6 +86,7 @@
             document.getElementById("resultat").value = ""
                 // On recharge la zone par défaut sur firstNumber
             display = document.getElementById("firstNumber")
+            point = false
         }
 
         function displayPoint() {
@@ -95,6 +96,35 @@
             }
             // On passe point en vrai pour le désactiver
             point = true
+        }
+
+        function calculate() {
+            // On récupère la valeur des éléments grâce à .value
+            // Utilisation de number pour convertir la valeur en nombre
+            let nb1 = Number(document.getElementById("firstNumber").value)
+            let nb2 = Number(document.getElementById("secondNumber").value)
+            let operator = document.getElementById("operation").value
+            let resultat
+                // On compare la valeur d'opérator pour déterminer l'opération a effectuer
+            switch (operator) {
+
+                case '+':
+                    resultat = nb1 + nb2
+                    break
+                case '-':
+                    resultat = nb1 - nb2
+                    break
+                case 'x':
+                    resultat = nb1 * nb2
+                    break
+                case '/':
+                    resultat = nb1 / nb2
+                    break
+            }
+
+
+            // On affiche le résultat de l'opération dans la case résultat
+            document.getElementById("resultat").value = resultat
         }
     </script>
 </body>
