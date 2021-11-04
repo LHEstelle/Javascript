@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Exercice 4</title>
+  <style>
+    .gras {
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="tableau"></div>
+
+
+  <script>
+    let divtableau = document.getElementById("tableau")
+
+    let days = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche']
+
+    for (let i = 0; i < days.length; i++) {
+      if (days[i] == 'samedi' || days[i] == 'dimanche') {
+        divtableau.innerHTML += `<p class="gras">${days[i]}</p>`}
+ else {
+          divtableau.innerHTML += `<p>${days[i]}</p>`
+        }
+      }
+    
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="exCalculatrice.css" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!--ICI CDN BOOTSRAP-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
+    <title>JS</title>
+
+</head>
+
+<body>
+
+    <div class="row tabl text-white m-0">
+        <div class="result border border-dark row ms-0 rounded text-dark" alt="75x75">
+            <div class="row text-end">
+                <input type="button" id="firstNumber" class="bg-white text-end text-dark border border-white rounded" disabled>
+            </div>
+            <div class="row">
+                <input type="button" id="operation" class="bg-white text-end text-dark border border-white rounded" disabled>
+            </div>
+            <div class="row">
+                <input type="button" id="secondNumber" class="bg-white text-end text-dark border border-white rounded" disabled>
+            </div>
+            <div class="row">
+                <input type="button" id="resultat" class="bg-white text-end text-dark border border-white rounded" disabled>
+            </div>
+        </div>
+        <div class=" myrow row text-center bg-white m-0 p-0">
+            <input type="button" id="sept" class="col-3 bg-dark text-white border border-white rounded-3" value="7" onclick="displayNumber(7)">
+            <input type="button" id="huit" class="col-3 bg-dark text-white  border border-white rounded" value="8" onclick="displayNumber(8)">
+            <input type="button" id="six" class="col-3  bg-dark text-white border border-white rounded" value="9" onclick="displayNumber(9)">
+            <input type="button" id="plus" class="col-3 bg-warning text-dark  border border-white rounded" value="+" onclick="displayOperator('+')">
+        </div>
+        <div class="myrow row text-center border border-white m-0 p-0">
+            <input type="button" id="quatre" class="col-3 bg-dark text-white  border border-white" value="4" onclick="displayNumber(4)">
+            <input type="button" id="cinq" class="col-3 bg-dark text-white  border border-white" value="5" onclick="displayNumber(5)">
+            <input type="button" id="six" class="col-3 bg-dark text-white  border border-white" value="6" onclick="displayNumber(6)">
+            <input type="button" id="moins" class="col-3 bg-warning text-dark  border border-white" value="-" onclick="displayOperator('-')">
+        </div>
+        <div class="myrow row text-center border border-white m-0 p-0">
+            <input type="button" id="un" class="col-3 bg-dark text-white  border border-white" value="1" onclick="displayNumber(1)">
+            <input type="button" id="deux" class="col-3 rounded bg-dark text-white  border border-white" value="2" onclick="displayNumber(2)">
+            <input type="button" id="trois" class="col-3 shadow-lg bg-dark text-white  border border-white" value="3" onclick="displayNumber(3)">
+            <input type="button" id="fois" class="col-3 shadow-lg bg-warning text-dark  border border-white" value="x" onclick="displayOperator('x')">
+        </div>
+        <div class="myrow row text-center border border-white m-0 p-0">
+            <input type="button" id="point" class="col-3 bg-dark text-white  border border-white" value="." onclick="displayPoint()">
+            <input type="button" id="zero" class="col-3 bg-dark text-white  border border-white" value="0" onclick="displayNumber(0)">
+            <input type="button" id="effacer" class="col-3 bg-danger text-white  border border-white" value="C" onclick="reset()">
+            <input type="button" id="diviser" class="col-3 bg-warning text-dark  border border-white" value="/" onclick="displayOperator('/')">
+        </div>
+        <div class="myrow row-12 m-0 p-0">
+            <input type="button" id="result" class=" egal col-12 bg-warning text-dark text-center border border-white rounded" alt="75x75 " value="=">
+        </div>
+    </div>
+    <script>
+        // cible la case dans laquelle on va écrire les premiers nombres
+        let display = document.getElementById("firstNumber")
+            // On déclare une variable qui va nous permettre de savoir si l'on a cliqué sur le point
+        let point = false
+
+        function displayNumber(number) {
+            display.value += number
+        }
+
+        function displayOperator(operator) {
+            document.getElementById("operation").value = operator
+                // On contrôle la zone firstNumber pour voir si elle n'est pas vide à l'aide de .length
+            if (display.value.length >= 1) {
+                // On passe sur la zone secondNumber
+                display = document.getElementById("secondNumber")
+            }
+            // Lorsque nous cliquons sur l'opérateur on réactive le point à l'aide de la variable point
+            point = false
+        }
+
+        function reset() {
+            document.getElementById("firstNumber").value = ""
+            document.getElementById("operation").value = ""
+            document.getElementById("secondNumber").value = ""
+            document.getElementById("resultat").value = ""
+                // On recharge la zone par défaut sur firstNumber
+            display = document.getElementById("firstNumber")
+        }
+
+        function displayPoint() {
+            // Si point est différent de faux on ajoute un point
+            if (!point) {
+                display.value += "."
+            }
+            // On passe point en vrai pour le désactiver
+            point = true
+        }
+    </script>
+</body>
+
+</html>
