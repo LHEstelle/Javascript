@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="exCalculatrice.css" type="text/css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!--ICI CDN BOOTSRAP-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
@@ -15,28 +14,32 @@
 
 <body>
     <form>
-        <div class=" col-4 ms-4">
-            <label for="password" class="form-label">Mot de passe</label>
-            <input type="password" class="form-control" id="password">
+        <div class="col-4 ms-4">
+            <label for="nom" class="form-label">Nom</label>
+            <input type="text" class="form-control" id="name">
+            <span class="error text-red" id="errorname"></span>
         </div>
         <div class="row col-4 ms-4">
-            <label for="verifpassword" class="form-label">Vérification du mot de passe</label>
-            <input type="password" class="form-control " id="verifpassword">
+            <label for="mail" class="form-label">Adresse mail</label>
+            <input type="mail" class="form-control " id="mail">
+        </div>
+        <div class="row col-4 ms-4">
+            <label for="number" class="form-label">Age</label>
+            <input type="age" class="form-control " id="age">
         </div>
         <button type="button" id="confirm" class="btn btn-primary mt-4 ms-4" onclick="verification()">Confirmer</button>
     </form>
 
     <script>
-        let mdp = document.getElementById("password")
-        let verifmdp = document.getElementById("verifpassword")
+        let nom = document.getElementById("nom")
+        let mail = document.getElementById("mail")
+        let age = document.getElementById("age")
+        let regexName = new RegExp("/[a-zA-Z]{3,20}/")
 
         function verification() {
-            if (mdp.value == verifmdp.value) {
-                mdp.style.borderColor = "green"
-                verifmdp.style.borderColor = "green"
-            } else {
-                mdp.style.borderColor = "red"
-                verifmdp.style.borderColor = "red"
+            if (regexName.test(nom.value) === false) {
+                document.getElementById("errorname").innerHTML = "veuillez entrer un nom valide"
+
             }
         }
     </script>
